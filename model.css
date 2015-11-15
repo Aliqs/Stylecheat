@@ -1,0 +1,367 @@
+/**
+ * CSS stylecheat
+ *
+ * Structuration du css via un modèle de feuille type
+ * Sommaire des sections
+ * - Reset
+ * - Font
+ * - Structure
+ * - Base
+ * - Objets & composants
+ * - Etats
+ * - Bugfix et workarround
+ * - Responsive
+ *
+ * @project Stylecheat
+ * @author Aurélien Lheureux
+ * @version 1.0.0
+ * @date 2015-09-09
+ * @lastmodified 2015-09-07 20:09:00;
+ * @package css
+ * @copyright 2015 by the author
+ */
+
+
+
+/**
+ * @section Reset
+ */
+/**
+ * @subsection Reset css from Meyer
+ * @see http://meyerweb.com/eric/tools/css/reset/ 
+ * @version 2.0 
+ * @date 2011-01-26
+ * @license: none (public domain)
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/**
+ * @subsection Reset css from the author
+ * @note Règles s'étant révélées communes à la plupart de mes productions web
+ */
+html{font-size:62.5%;} 
+body{font-size:1em;}
+/* Cette précédent règles permet de réinitialiser la taille de la police a 1em = 1px et permet une utilisation
+  plus simple à l'instar de rem */
+a{text-decoration:none;}
+a,
+input[type="submit"],
+button{cursor:pointer;}
+button{padding:0;} /* Supprime le decalage au clic*/
+
+
+/**
+ * @section Font
+ * Remplacer * par le nom de la font
+ */
+@font-face {
+    font-family: '';
+    src: url('./fonts/*.eot');
+    src: url('./fonts/*.eot?#iefix') format('embedded-opentype'),
+          url('./fonts/*.woff') format('woff'),
+          url('./fonts/*.ttf') format('truetype'),
+          url('./fonts/*.svg#*') format('svg'),
+     local('?');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/**
+ * @section Base
+ * Règles des élements et classes de bases
+ */ 
+/**
+ * @subsection Titles
+ * De fait, les styles des titres de page d'accueil sont rarement les mêmes que ceux des pages internes
+ * Il est donc préférable de partir sur le plus grand nombre de styles communs des titres, soit les pages internes
+ * Le style des titres par defaut doit être celui du contenu textuel global
+ * Les titres plus spécifiques sont overridés selon leur emplacement
+ */
+ h1,.h1{}
+ h2,.h2{}
+ h3,.h3{}
+ h4,.h4{}
+ h5,.h5{}
+ h6,.h6{}
+
+/**
+ * @subsction Texts
+ * Cette classe de base permet d'appliquer un style au différents corps de texte tout en dissociant la taille
+ * Elle doit s'appliquer sur le premier parent du texte e.g. <p class="txt-12">Lorem</p>
+ *
+ * On évite un maximum d'imbriquer des balises de titres dans une balise possedant cette classe
+ * car du fait de l'inhéritance, le calcul en em se fait depuis le parent et non pas depuis le root
+ * Mais certains cas obligent à le faite cf .rte (rich text editor) qui restreint le contrôle.
+ */
+ *[class*="txt-"]{
+    font-family: Arial,sans-serif;
+    font-size: 1em;
+    line-height: normal;
+    margin-bottom: 10px;
+    text-align: justify;
+ }
+ .txt-12{font-size:1.2em;}
+  .txt-12 h1 {} /* il faut recalculer proportionnellement le font-size des hn imbriqués dans .txt- */
+  .txt-12 h2 {}
+  /* ... */
+ .txt-14{font-size:1.4em;}
+ .txt-16{font-size:1.6em;}
+ /* ... */
+
+/** 
+ * @subsection Rich Text Editor
+ *
+ * Une classe de ce genre permet de garder un contrôle sur les textes provenant d'un éditeur de texte
+ * Cela permet de forcer une taille, un style pour certains élements e.g. blockquote, supprimer des marges
+ * ou tout autre styles appliqués par defaut par l'éditeur
+ */
+ .rte{font-size:1.4em;}
+ .rte > * {font-size: inherit;}
+ .rte blockquote{}
+
+/**
+ * @subsection Inputs
+ * Application des styles de bases des différents input/select/button
+ */
+/* ... */
+
+
+/**
+ * @section Structures
+ * Utiliser les marges négatives sur le parent?
+ */
+/**
+ * @subsection Règles d'agencement (Layout rules)
+ * @see https://smacss.com/book/type-layout
+ */
+.l-left{float:left;}
+.l-right{float:right;}
+
+/**
+ * @subsection Classes spécifiques d'agencement
+ * @see tricks.css
+ */
+.strut:before{content:"";display: inline-block;vertical-align: middle;height: 100%;width:0;line-height:100%;font-size:0;}
+
+.clearfix:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+.clearfix {display: inline-block;}
+  html[xmlns] .clearfix {display: block;}
+  * html .clearfix {height: 1%;}
+
+.strut:before{content:"";display: inline-block;vertical-align: middle;height: 100%;width:0;line-height:100%;padding:0;margin:0;}
+.strut>*{display:inline-block;vertical-align:middle;}
+
+.iar{text-align:justify;}
+.iar:after{content:".";display:inline-block;height:0;width:100%;visibility:hidden;}
+.iar>*{display:inline-block;vertical-align:middle;}
+
+/**
+ * @subsection Grilles
+ * Utilisation de grilles personnalisées se révélant moins gourmandes que 960gs ou bootsrap
+ * Parti pris des unités en pourcentage car la place du responsive est devenu inévitable
+ * De plus ici, pas de somme de colonnes valant 12, mais des ratios. 
+ * e.g. g-w12 equivaut a un bloc dont la longueur fait 1/2 du bloc parent
+ * Les blocs peuvent également se retrouver dans la même ligne
+ * 
+ * +----------- g-row -------------------+
+ * |+----- g-w12 -----+----- g-w12 -----+|
+ * ||                 |                 ||
+ * |+-----------------+-----------------+|
+ * +----------- g-row -------------------+
+ * |+-- g-w13 --+------- g-w23 ---------+|
+ * ||           |                       ||
+ * |+-----------+-----------------------+|
+ * +-------------------------------------+
+ * 
+ * @note L'utilisation d'un préprocesseur css permet de changer facilement les valeur des marges, tout en recalculant
+ * les tailles des blocs
+ *
+ */
+.g-row {}
+.g-row:after{content:".";display:block;visibility:hidden;line-height:0;height:0;clear:both;}
+*[class*="g-w"]{float:left;position:relative;margin:0 1%;}
+
+.g-w11{width:98%;}
+.g-w12{width:48%;}
+.g-w13{width:31.3333333%}
+.g-w23{width:64.6666667%}
+.g-w14{width:23%}
+.g-w24{width:48%;}
+.g-w34{width:73%}
+.g-w15{width:18%}
+.g-w25{width:38%}
+.g-w35{width:58%}
+.g-w45{width:78%}
+.g-w16{width:14.6666667%}
+.g-w26{width:31.3333333%}
+.g-w36{width:48%}
+.g-w46{width:64.6666667%}
+.g-w56{width:81.3333333%}
+/* ... */
+.g-full *[class*="g-w"]{margin:0;}
+.g-full .g-w11{width:100%;}
+.g-full .g-w12{width:50%;}
+.g-full .g-w13{width:33.3333333%}
+.g-full .g-w23{width:66.6666667%}
+.g-full .g-w14{width:25%}
+.g-full .g-w24{width:50%;}
+.g-full .g-w34{width:75%}
+.g-full .g-w15{width:20%}
+.g-full .g-w25{width:40%}
+.g-full .g-w35{width:60%}
+.g-full .g-w45{width:80%}
+.g-full .g-w16{width:16.6666667%}
+.g-full .g-w26{width:33.3333333%}
+.g-full .g-w36{width:50%}
+.g-full .g-w46{width:66.6666667%}
+.g-full .g-w56{width:83.3333333%}
+/* ... */
+.g-revert *[class*="g-w"]{float:right}
+
+/* @todo pull & push */
+
+@media screen and (max-width:900px){
+  *[class*="g-w"]{width:100%!important;margin:0!important;}
+  /* On pourrait ici utiliser des classes supplémentaires à l'instar de bootstrap
+    .g-w11-xs/s/m{}
+  */
+}
+
+
+/**
+ * @section Objets et composants
+ * 
+ * Utilisation de OOCSS via BEM | SMACSS
+ * .org[-js]-Block[-element][--modifier]
+ * @note J'ai pris l'habitude d'indenter chaque declaration enfant à l'aide d'une tab
+ */
+/**
+ * @subsection Composants communs
+ */
+/**
+ * @subsubsection Messages et leur états
+ * Les flashes permettent d'afficher un message temporaire en haut de l'écran 
+ */
+.flashes{}
+  .flash{}
+  .flash--info{}
+  .flash--error{}
+  .flash--warning{}
+  .flash--success{}
+/* La classe status s'appliquer sur n'importe élement comprenant du texte */
+.status--info{}
+.status--error{}
+.status--warning{}
+.status--success{}
+/* La classe field et complémentaire à status lorsqu'il est nécessaire de changer l'état d'un champ */
+.field--success{}
+.field--warning{}
+.field--error{}
+.field--info{}
+
+/** 
+ * Prevoir un css facilement appliquable en fonction du type d'item
+ * l'utilisation d'item permet de supprimer l'aspect sémantique d'un objet quel que soit son type
+ * ex: un objet produit avec une liste ou un objet personne avec une liste
+ * Ainsi la seule application d'une classe supplémentaire permet de spécifier son type
+ */
+.item{}
+.list-items{}
+.list-item{}
+.single-item{}
+
+/**
+ * @subsection Composants spécifiques
+ *
+ * @note Spécifiques au site ou à la webapp, ils sont construit sur un modèle OOCSS
+ * La partie thème est a différencier de la partie structurelle du module/composant
+ * Ainsi on attribura un style par defaut au composant et l'on viendra ajouter une classe thématique
+ * afin de l'habiller
+ * En plus, j'ai pris l'habitude de différencier de la structure et du thème, le positionnement du module
+ * Ainsi pour tout réagencement, je préfère appliquer un "override" a l'aide d'une classe parente, indépendante
+ * du module.
+ */
+.module{} /* structure */
+  .module-title{}
+  .module-title--right{}
+  .module-body{}
+
+  .parent .module{} /* override du positionnement */
+
+.module-theme{} /* thème */
+  .module-theme .module-title{}
+  .module-theme .module-body{}
+/* ... */
+
+/**
+ * @section Etats
+ * Les règles d'état sont nombreuses
+ * Elles peuvent être accompagnées de règles javascript permettant ainsi de dissocier le style de l'aspect fonctionnel
+ * e.g.  .js-is-selected{} Cette classe n'a pas vocation a être stylée, elle est juste utilisé en js.
+ * Cependant cela implique de jouer avec 2 classes en js pour certain état, cette utilité n'ets donc pas évidente.
+ */
+ .is-hidden{display:none;}
+ .is-selected{}
+ /* .is-... */
+
+
+/**
+ * @section Bugfix et workarround
+
+ * Cette section répertorie les différents hacks ou corrections css d'un navigateur à l'autre
+ * @note J'ai pris l'habitude d'ajouter les correctifs navigateur directement après la déclaration de l'objet ou son thème
+ * L'intérêt étant de regrouper les déclarations et s'y retrouver plus rapidement
+ */
+/* ... */
+
+/**
+ * @section Responsive
+
+ * Cette section corrige tous les styles en fonction des différents break-point
+ * @note J'ai pris l'habitude d'ajouter les correctifs responsive directement après la déclaration de l'objet ou son thème
+ * L'intérêt étant de regrouper les déclarations et s'y retrouver plus rapidement
+ */
+ @media only screen and (min-width:0px) and (max-width:1000px){}

@@ -1,0 +1,272 @@
+﻿/**
+ * CSS stylecheat
+ *
+ * La nature de chaque projet étant particulière, les dernières innovations css3 ne peuvent s'appliquer à chaque fois
+ * Je répertorie ici, mes techniques et astuces, créées ou récupérées sur le web qui permettent de palier de nombreux problèmes.
+ *
+ * @project Stylecheat
+ * @author Aurélien Lheureux
+ * @version 1.0.0
+ * @date 2015-09-07
+ * @lastmodified 2015-09-07 20:09:00;
+ * @package css
+ * @copyright 2015 by the author
+ */
+
+/**
+ * @section reset
+ */
+/**
+ * @subsection font
+ * 
+ * Cette technique permet d'obtenir une valeur d'1em équivalent a 10px
+ * Ainsi il est plus facile d'appliquer une taille de police en em.
+ * e.g. a{font-size:1.2em;}	equivaut a a{font-size:12px;}	  
+ */
+ html{font-size:62.5%;}
+ body{font-size:1em;}
+
+
+/**
+ * @section Classes
+ */
+/**
+ * Class clearfix
+ * Permet de corriger la position des blocs suivant un/des bloc(s) floattant
+ */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.clearfix {display: inline-block;}
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+
+/**
+ * @subsection Class strut	  
+ * Permet un alignement vertical de blocs beaucoup plus facilement
+ */
+.strut:before,
+*[class*='strut']:before{
+	content:"";
+   	 display: inline-block;
+     vertical-align: middle;
+     height: 100%;
+     width:0;
+     line-height:100%;
+     font-size:0;
+}
+/**
+ * @subsection Class iar
+ *	
+ * Permet un alignement horizontal de part et d'autre d'un bloc parent
+ * @note Attention les autres élements doivent être séparé par un &nbsp;  
+ */
+ /*.iar-parent{text-align:justify;}
+ .iar{display:inline-block;line-height:0;height:0;width:100%;}*/
+.iar{text-align:justify;}
+.iar:after{content:"";display:inline-block;line-height:0;height:0;width:100%;}
+/**
+ * @subsection Class column
+ *
+ * Permet d'obtenir des colonnes de hauteurs identiques 
+ * @see http://www.ejeliot.com/blog/61
+ */
+.column-eq{overflow:hidden;}
+.column-eq>*{margin-bottom:-100%|px;padding-bottom:100%|px;}
+/**	
+ * @subsection Class stroke
+ * Titre avec traits autour sans element html
+ */
+.stroke{display:table;white-space:nowrap;overflow:hidden;}
+.stroke:before{left:-50px;}
+.stroke:after{right:-50px;}
+.stroke:before,
+.stroke:after{content:"";display:table-cell;position:relative;width:50%;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWM4c+bMfwAIMANkpuW1DwAAAABJRU5ErkJggg==") center left repeat-x;}
+
+
+/**
+ * @section bugfixes
+ */
+/**
+ * @subsection display
+ * @bugfix ie<8
+ */
+.selector{
+ 	display:inline-block;
+ 	*display:inline;
+ 	zoom:1;
+ }
+/**
+ * @subsection min & max
+ */
+.selector{
+ 	min-height:100px;
+ 	_height:100px;
+}
+/**
+ * @subsection touchout
+ * @bugfix ios<5
+ *
+ * Pure css mobile menu
+ * Toujours utiliser :focus,:active,:hover ensemble pour des questions d'accessiblités
+ *
+ * Sur iphone < ios5, il faut attribuer le touch event sur l'element
+ * Cela se fait via cursor:pointer; ou l'attribut onclick="void(0)"
+ * Ajouter cursor:pointer sur body permet de prendre en compte le touch out et fermer le menu
+ *
+ * Seul pb, le menu ne se ferme pas en recliquant sur le burger icon, il faut cliquer en dehors
+ * Prochainement une solution ?
+ *
+ * Un double tap peut survenir, cela se produit lorsque qu'un hover est appliqué sur un élement comprenant 
+ * un enfant caché via display:none ou visibility:hidden;
+ */
+ .menu:hover .panel,
+ .menu:focus .panel,
+ .menu:active .panel{
+    display:block;
+ }
+
+
+/**
+ * @section alignement
+ */
+/**
+ * @subsection horizontal
+ */
+/**
+ * @subsubsection with margin
+ * @note La largeur de l'élement est requise
+ */
+.element{width:50%;margin:auto;}
+/**
+ * @subsubsection with inline-block
+ */
+.parent{text-align:center;}
+.child{display:inline-block;text-align:left;}
+/**
+ * @subsubsection with relative position
+ * @note La position relative est requise
+ */
+.element{display:inline-block;position:relative;right:50%;margin-right:-100%;}
+/* or */
+.parent{border:1px solid blue;width:400px;margin:0px auto;}
+.wrapper{position:relative;right:50%;text-align:center;}
+.child {border:1px solid green;width:450px;height:50px;display:inline-block;margin-right:-100%;}
+/**
+ * @subsubsection with absolute position and margin
+ * @note La largeur de l'enfant est requis
+ */
+.parent{position:relative;}
+.child{position:absolute;left:50%;width:500px;margin-left:-250px;}
+/**
+ * @subsubsection with absolute stretching
+ * @note La hauteur de l'enfant est requise
+ * fonctionne aussi pour le vertical en ajoutant top:0;bottom;0; et un max-height|height
+ */ 
+.parent{position:relative;}
+.child{position:absolute;left:0;right:0;max-width|width:50%;margin:auto;}
+/* or */
+.child{position:absolute;left:50%;right:50%;width:50%;margin-left:-25%;}
+
+/**
+ * @subsection vertical
+ */
+/**
+ * @subsubsection strut
+ * @see strut class
+ */
+.strut{}
+/**
+ * @subsubsection with line-height
+ * @note La hauteur du parent est requise
+ */
+.parent{height:100px;line-height:100px;}
+.child{display:inline-block;vertical-align:middle;line-height:1;}
+/**
+ * @subsubsection with display table-cell
+ * @bugfix ie<? display:inline-block; on child element of .child
+ */
+.parent{display:table;}
+.child{display:table-cell;vertical-align:middle;}
+/**
+ * @subsubsection with absolute & margin
+ * @note La hauteur de l'enfant est requis
+ */ 
+.parent{position:relative;}
+.child{position:absolute;top:50%;margin-top:-100px;height:200px;}
+/**
+ * @subsubsection absolute stretching
+ * @note La hauteur de l'enfant est requise
+ */ 
+.parent{position:relative;}
+.child{position:absolute;top:0;bottom:0;height:50%;margin:auto;}
+/**
+ * @subsubsection equals padding
+ */   
+.parent{padding:10% 0;}
+.child{display:block;padding:10%;}
+/**
+ * @subsubsection floater div
+ * @note La hauteur de l'enfant est requise
+ */ 
+ .floater:before{content:"";float: left; height: 50%;width: 100%;margin-bottom: -50px;}
+ .floater>*{clear: both; height: 100px;}
+/**
+ * @subsubsection translate
+ * @note Le support du css3 est requis
+ */ 
+.parent{transform-style: preserve-3d;  /* facultatif : résoud un bug non systématique de blur sur IE */}
+.child{position:relative; top:50%; transform:translateY(-50%);}
+
+
+/**	
+ * @section Custom inputs
+ */
+._input{}
+/**
+ * @subsection checkbox
+ */
+._checkbox {position:relative;display:inline-block;cursor:pointer;}
+/* non support du css3 */
+._checkbox> .witness{display:none;}
+._checkbox> .witness + input[type="checkbox"]{display:inline-block;}
+/* support du css3 */
+._checkbox> .witness:checked + input[type="checkbox"]{display:none;}
+._checkbox> .witness:checked + input[type="checkbox"] + label{display:inline-block;}
+._checkbox> label{display:none;vertical-align:middle;width:20px;height:20px;background-size:100% 100%;cursor:pointer;border:1px solid #ccc;}
+._checkbox> input[type="checkbox"]:checked + label:before{content:"\2713";position:absolute;height:100%;width:100%;font-size:18px;line-height:1;text-align:center;}
+/**
+ * @subsection select
+ */
+._select{border:1px solid #ccc;position:relative;}
+._select:after{content:"";display:block;position:absolute;right:10px;top:50%;margin-top:-5px;z-index:1;width: 0;height: 0;border-style: solid;border-width: 8.7px 5px 0 5px;border-color:#ccc transparent transparent}
+._select>select{position:relative;z-index:2;margin-bottom:0;background: none;cursor: pointer;padding-right: 0;width: 120%; }
+._select select,
+._select option {border: 0 none;left: -1px;outline: 0 none; position: relative;}
+._select option{font-size:1em;}
+._select option[disabled][selected] {display:none;}
+/**	
+ * @subsection file
+ */
+ ._file{}
+/**
+ * @subsection search
+ */
+ ._search{display:inline-block;*display:inline;zoom:1;padding:3px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+}
+._search>input[type="text"]{position:relative;z-index:1;font-size: 1.2em;padding:5px;font-family:"Roboto",Arial,sans-serif;border:1px solid black;}
+._search>input[type="submit"]{text-transform: uppercase;z-index: 0;background:none;}
+
+ 
+
+
+
+
