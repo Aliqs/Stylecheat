@@ -58,8 +58,8 @@ time, mark, audio, video {
   +section by @author
 */
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, main,
-section {
+footer, header, hgroup, menu, nav, main
+{
 	display: block;
 }
 body {
