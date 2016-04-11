@@ -16,9 +16,9 @@
  * @author Aurélien Lheureux
  * @version 1.0.0
  * @date 2015-09-09
- * @lastmodified 2015-09-07 20:09:00;
+ * @lastmodified 2016-11-04
  * @package css
- * @copyright 2015 by the author
+ * @copyright 2016 by the author
  */
 
 
@@ -90,6 +90,7 @@ a,
 input[type="submit"],
 button{cursor:pointer;}
 button{padding:0;} /* Supprime le decalage au clic*/
+section,main,aside,article{display:block;} /* Force le display pour les éléments non reconnus*/
 
 
 /**
