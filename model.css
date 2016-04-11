@@ -18,7 +18,7 @@
  * @date 2015-09-09
  * @lastmodified 2016-11-04
  * @package css
- * @copyright 2016 by the author
+ * @copyright 2016 by @author
  */
 
 
@@ -53,9 +53,13 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+/* HTML5 display-role reset for older browsers 
+  +main by @author
+  +section by @author
+*/
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+footer, header, hgroup, menu, nav, section, main,
+section {
 	display: block;
 }
 body {
@@ -78,7 +82,7 @@ table {
 }
 
 /**
- * @subsection Reset css from the author
+ * @subsection Reset css from @author
  * @note Règles s'étant révélées communes à la plupart de mes productions web
  */
 html{font-size:62.5%;} 
@@ -90,7 +94,6 @@ a,
 input[type="submit"],
 button{cursor:pointer;}
 button{padding:0;} /* Supprime le decalage au clic*/
-section,main,aside,article{display:block;} /* Force le display pour les éléments non reconnus*/
 
 
 /**
