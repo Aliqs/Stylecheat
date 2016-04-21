@@ -240,6 +240,16 @@ html[xmlns] .clearfix {display: block;}
 ._checkbox> .witness:checked + input[type="checkbox"] + label{display:inline-block;}
 ._checkbox> label{display:none;vertical-align:middle;width:20px;height:20px;background-size:100% 100%;cursor:pointer;border:1px solid #ccc;}
 ._checkbox> input[type="checkbox"]:checked + label:before{content:"\2713";position:absolute;height:100%;width:100%;font-size:18px;line-height:1;text-align:center;}
+
+/* Or a simpler version of checkbox without customize box (same with radio) */
+._checkbox, 
+._radio {display: block;margin-bottom: 10px;margin-top: 10px;position: relative;}
+._checkbox label,
+._radio label{cursor: pointer;font-weight: 400;margin-bottom: 0;min-height: 20px;padding-left: 20px;}
+.checkbox input[type="checkbox"],
+.radio input[type="radio"]{position: absolute;margin-left: -20px;}
+
+
 /**
  * @subsection select
  */
