@@ -1,7 +1,7 @@
 /**
  * CSS stylecheat
  *
- * Structuration du css via un modèle de feuille type
+ * Structuration du css via un modÃ¨le de feuille type
  * Sommaire des sections
  * - Reset
  * - Font
@@ -13,7 +13,7 @@
  * - Responsive
  *
  * @project Stylecheat
- * @author Aurélien Lheureux
+ * @author AurÃ©lien Lheureux
  * @version 1.0.0
  * @date 2015-09-09
  * @lastmodified 2016-11-04
@@ -82,12 +82,13 @@ table {
 
 /**
  * @subsection Reset css from @author
- * @note Règles s'étant révélées communes à la plupart de mes productions web
+ * @note RÃ¨gles s'Ã©tant rÃ©vÃ©lÃ©es communes Ã  la plupart de mes productions web
  */
+*{font-family:inherit;}
 html{font-size:62.5%;} 
 body{font-size:1em;}
-/* Cette précédent règles permet de réinitialiser la taille de la police a 1em = 1px et permet une utilisation
-  plus simple à l'instar de rem */
+/* Cette prÃ©cÃ©dent rÃ¨gles permet de rÃ©initialiser la taille de la police a 1em = 1px et permet une utilisation
+  plus simple Ã  l'instar de rem */
 a{text-decoration:none;}
 a,
 input[type="submit"],
@@ -114,14 +115,14 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
 /**
  * @section Base
- * Règles des élements et classes de bases
+ * RÃ¨gles des Ã©lements et classes de bases
  */ 
 /**
  * @subsection Titles
- * De fait, les styles des titres de page d'accueil sont rarement les mêmes que ceux des pages internes
- * Il est donc préférable de partir sur le plus grand nombre de styles communs des titres, soit les pages internes
- * Le style des titres par defaut doit être celui du contenu textuel global
- * Les titres plus spécifiques sont overridés selon leur emplacement
+ * De fait, les styles des titres de page d'accueil sont rarement les mÃªmes que ceux des pages internes
+ * Il est donc prÃ©fÃ©rable de partir sur le plus grand nombre de styles communs des titres, soit les pages internes
+ * Le style des titres par defaut doit Ãªtre celui du contenu textuel global
+ * Les titres plus spÃ©cifiques sont overridÃ©s selon leur emplacement
  */
  h1,.h1{}
  h2,.h2{}
@@ -132,12 +133,12 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
 /**
  * @subsction Texts
- * Cette classe de base permet d'appliquer un style au différents corps de texte tout en dissociant la taille
+ * Cette classe de base permet d'appliquer un style au diffÃ©rents corps de texte tout en dissociant la taille
  * Elle doit s'appliquer sur le premier parent du texte e.g. <p class="txt-12">Lorem</p>
  *
- * On évite un maximum d'imbriquer des balises de titres dans une balise possedant cette classe
- * car du fait de l'inhéritance, le calcul en em se fait depuis le parent et non pas depuis le root
- * Mais certains cas obligent à le faite cf .rte (rich text editor) qui restreint le contrôle.
+ * On Ã©vite un maximum d'imbriquer des balises de titres dans une balise possedant cette classe
+ * car du fait de l'inhÃ©ritance, le calcul en em se fait depuis le parent et non pas depuis le root
+ * Mais certains cas obligent Ã  le faite cf .rte (rich text editor) qui restreint le contrÃ´le.
  */
  *[class*="txt-"]{
     font-family: Arial,sans-serif;
@@ -147,7 +148,7 @@ button{padding:0;} /* Supprime le decalage au clic*/
     text-align: justify;
  }
  .txt-12{font-size:1.2em;}
-  .txt-12 h1 {} /* il faut recalculer proportionnellement le font-size des hn imbriqués dans .txt- */
+  .txt-12 h1 {} /* il faut recalculer proportionnellement le font-size des hn imbriquÃ©s dans .txt- */
   .txt-12 h2 {}
   /* ... */
  .txt-14{font-size:1.4em;}
@@ -157,9 +158,9 @@ button{padding:0;} /* Supprime le decalage au clic*/
 /** 
  * @subsection Rich Text Editor
  *
- * Une classe de ce genre permet de garder un contrôle sur les textes provenant d'un éditeur de texte
- * Cela permet de forcer une taille, un style pour certains élements e.g. blockquote, supprimer des marges
- * ou tout autre styles appliqués par defaut par l'éditeur
+ * Une classe de ce genre permet de garder un contrÃ´le sur les textes provenant d'un Ã©diteur de texte
+ * Cela permet de forcer une taille, un style pour certains Ã©lements e.g. blockquote, supprimer des marges
+ * ou tout autre styles appliquÃ©s par defaut par l'Ã©diteur
  */
  .rte{font-size:1.4em;}
  .rte > * {font-size: inherit;}
@@ -167,24 +168,24 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
 /**
  * @subsection Inputs
- * Application des styles de bases des différents input/select/button
+ * Application des styles de bases des diffÃ©rents input/select/button
  */
 /* ... */
 
 
 /**
  * @section Structures
- * Utiliser les marges négatives sur le parent?
+ * Utiliser les marges nÃ©gatives sur le parent?
  */
 /**
- * @subsection Règles d'agencement (Layout rules)
+ * @subsection RÃ¨gles d'agencement (Layout rules)
  * @see https://smacss.com/book/type-layout
  */
 .l-left{float:left;}
 .l-right{float:right;}
 
 /**
- * @subsection Classes spécifiques d'agencement
+ * @subsection Classes spÃ©cifiques d'agencement
  * @see tricks.css
  */
 .strut:before{content:"";display: inline-block;vertical-align: middle;height: 100%;width:0;line-height:100%;font-size:0;}
@@ -203,11 +204,11 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
 /**
  * @subsection Grilles
- * Utilisation de grilles personnalisées se révélant moins gourmandes que 960gs ou bootsrap
- * Parti pris des unités en pourcentage car la place du responsive est devenu inévitable
+ * Utilisation de grilles personnalisÃ©es se rÃ©vÃ©lant moins gourmandes que 960gs ou bootsrap
+ * Parti pris des unitÃ©s en pourcentage car la place du responsive est devenu inÃ©vitable
  * De plus ici, pas de somme de colonnes valant 12, mais des ratios. 
  * e.g. g-w12 equivaut a un bloc dont la longueur fait 1/2 du bloc parent
- * Les blocs peuvent également se retrouver dans la même ligne
+ * Les blocs peuvent Ã©galement se retrouver dans la mÃªme ligne
  * 
  * +----------- g-row -------------------+
  * |+----- g-w12 -----+----- g-w12 -----+|
@@ -219,7 +220,7 @@ button{padding:0;} /* Supprime le decalage au clic*/
  * |+-----------+-----------------------+|
  * +-------------------------------------+
  * 
- * @note L'utilisation d'un préprocesseur css permet de changer facilement les valeur des marges, tout en recalculant
+ * @note L'utilisation d'un prÃ©processeur css permet de changer facilement les valeur des marges, tout en recalculant
  * les tailles des blocs
  *
  */
@@ -268,7 +269,7 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
 @media screen and (max-width:900px){
   *[class*="g-w"]{width:100%!important;margin:0!important;}
-  /* On pourrait ici utiliser des classes supplémentaires à l'instar de bootstrap
+  /* On pourrait ici utiliser des classes supplÃ©mentaires Ã  l'instar de bootstrap
     .g-w11-xs/s/m{}
   */
 }
@@ -279,14 +280,14 @@ button{padding:0;} /* Supprime le decalage au clic*/
  * 
  * Utilisation de OOCSS via BEM | SMACSS
  * .org[-js]-Block[-element][--modifier]
- * @note J'ai pris l'habitude d'indenter chaque declaration enfant à l'aide d'une tab
+ * @note J'ai pris l'habitude d'indenter chaque declaration enfant Ã  l'aide d'une tab
  */
 /**
  * @subsection Composants communs
  */
 /**
- * @subsubsection Messages et leur états
- * Les flashes permettent d'afficher un message temporaire en haut de l'écran 
+ * @subsubsection Messages et leur Ã©tats
+ * Les flashes permettent d'afficher un message temporaire en haut de l'Ã©cran 
  */
 .flashes{}
   .flash{}
@@ -294,12 +295,12 @@ button{padding:0;} /* Supprime le decalage au clic*/
   .flash--error{}
   .flash--warning{}
   .flash--success{}
-/* La classe status s'appliquer sur n'importe élement comprenant du texte */
+/* La classe status s'appliquer sur n'importe Ã©lement comprenant du texte */
 .status--info{}
 .status--error{}
 .status--warning{}
 .status--success{}
-/* La classe field et complémentaire à status lorsqu'il est nécessaire de changer l'état d'un champ */
+/* La classe field et complÃ©mentaire Ã  status lorsqu'il est nÃ©cessaire de changer l'Ã©tat d'un champ */
 .field--success{}
 .field--warning{}
 .field--error{}
@@ -307,9 +308,9 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
 /** 
  * Prevoir un css facilement appliquable en fonction du type d'item
- * l'utilisation d'item permet de supprimer l'aspect sémantique d'un objet quel que soit son type
+ * l'utilisation d'item permet de supprimer l'aspect sÃ©mantique d'un objet quel que soit son type
  * ex: un objet produit avec une liste ou un objet personne avec une liste
- * Ainsi la seule application d'une classe supplémentaire permet de spécifier son type
+ * Ainsi la seule application d'une classe supplÃ©mentaire permet de spÃ©cifier son type
  */
 .item{}
 .list-items{}
@@ -317,14 +318,14 @@ button{padding:0;} /* Supprime le decalage au clic*/
 .single-item{}
 
 /**
- * @subsection Composants spécifiques
+ * @subsection Composants spÃ©cifiques
  *
- * @note Spécifiques au site ou à la webapp, ils sont construit sur un modèle OOCSS
- * La partie thème est a différencier de la partie structurelle du module/composant
- * Ainsi on attribura un style par defaut au composant et l'on viendra ajouter une classe thématique
+ * @note SpÃ©cifiques au site ou Ã  la webapp, ils sont construit sur un modÃ¨le OOCSS
+ * La partie thÃ¨me est a diffÃ©rencier de la partie structurelle du module/composant
+ * Ainsi on attribura un style par defaut au composant et l'on viendra ajouter une classe thÃ©matique
  * afin de l'habiller
- * En plus, j'ai pris l'habitude de différencier de la structure et du thème, le positionnement du module
- * Ainsi pour tout réagencement, je préfère appliquer un "override" a l'aide d'une classe parente, indépendante
+ * En plus, j'ai pris l'habitude de diffÃ©rencier de la structure et du thÃ¨me, le positionnement du module
+ * Ainsi pour tout rÃ©agencement, je prÃ©fÃ¨re appliquer un "override" a l'aide d'une classe parente, indÃ©pendante
  * du module.
  */
 .module{} /* structure */
@@ -334,17 +335,17 @@ button{padding:0;} /* Supprime le decalage au clic*/
 
   .parent .module{} /* override du positionnement */
 
-.module-theme{} /* thème */
+.module-theme{} /* thÃ¨me */
   .module-theme .module-title{}
   .module-theme .module-body{}
 /* ... */
 
 /**
  * @section Etats
- * Les règles d'état sont nombreuses
- * Elles peuvent être accompagnées de règles javascript permettant ainsi de dissocier le style de l'aspect fonctionnel
- * e.g.  .js-is-selected{} Cette classe n'a pas vocation a être stylée, elle est juste utilisé en js.
- * Cependant cela implique de jouer avec 2 classes en js pour certain état, cette utilité n'ets donc pas évidente.
+ * Les rÃ¨gles d'Ã©tat sont nombreuses
+ * Elles peuvent Ãªtre accompagnÃ©es de rÃ¨gles javascript permettant ainsi de dissocier le style de l'aspect fonctionnel
+ * e.g.  .js-is-selected{} Cette classe n'a pas vocation a Ãªtre stylÃ©e, elle est juste utilisÃ© en js.
+ * Cependant cela implique de jouer avec 2 classes en js pour certain Ã©tat, cette utilitÃ© n'ets donc pas Ã©vidente.
  */
  .is-hidden{display:none;}
  .is-selected{}
@@ -354,17 +355,17 @@ button{padding:0;} /* Supprime le decalage au clic*/
 /**
  * @section Bugfix et workarround
 
- * Cette section répertorie les différents hacks ou corrections css d'un navigateur à l'autre
- * @note J'ai pris l'habitude d'ajouter les correctifs navigateur directement après la déclaration de l'objet ou son thème
- * L'intérêt étant de regrouper les déclarations et s'y retrouver plus rapidement
+ * Cette section rÃ©pertorie les diffÃ©rents hacks ou corrections css d'un navigateur Ã  l'autre
+ * @note J'ai pris l'habitude d'ajouter les correctifs navigateur directement aprÃ¨s la dÃ©claration de l'objet ou son thÃ¨me
+ * L'intÃ©rÃªt Ã©tant de regrouper les dÃ©clarations et s'y retrouver plus rapidement
  */
 /* ... */
 
 /**
  * @section Responsive
 
- * Cette section corrige tous les styles en fonction des différents break-point
- * @note J'ai pris l'habitude d'ajouter les correctifs responsive directement après la déclaration de l'objet ou son thème
- * L'intérêt étant de regrouper les déclarations et s'y retrouver plus rapidement
+ * Cette section corrige tous les styles en fonction des diffÃ©rents break-point
+ * @note J'ai pris l'habitude d'ajouter les correctifs responsive directement aprÃ¨s la dÃ©claration de l'objet ou son thÃ¨me
+ * L'intÃ©rÃªt Ã©tant de regrouper les dÃ©clarations et s'y retrouver plus rapidement
  */
  @media only screen and (min-width:0px) and (max-width:1000px){}
