@@ -89,10 +89,12 @@ html{font-size:62.5%;}
 body{font-size:1em;}
 /* Cette précédent règles permet de réinitialiser la taille de la police a 1em = 1px et permet une utilisation
   plus simple à l'instar de rem */
-a{text-decoration:none;}
 a,
-input[type="submit"],
-button{cursor:pointer;}
+a:focus,
+a:hover,
+a:active,
+a:visited{color:inherit;}
+a, input[type="submit"], button{cursor:pointer;}
 button{padding:0;} /* Supprime le decalage au clic*/
 
 
