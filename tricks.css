@@ -253,7 +253,7 @@ html[xmlns] .clearfix {display: block;}
 /**
  * @subsection select
  */
-._select{border:1px solid #ccc;position:relative;}
+._select{border:1px solid #ccc;position:relative;overflow:hidden;}
 ._select:after{content:"";display:block;position:absolute;right:10px;top:50%;margin-top:-5px;z-index:1;width: 0;height: 0;border-style: solid;border-width: 8.7px 5px 0 5px;border-color:#ccc transparent transparent}
 ._select>select{position:relative;z-index:2;margin-bottom:0;background: none;cursor: pointer;padding-right: 0;width: 120%; }
 ._select select,
